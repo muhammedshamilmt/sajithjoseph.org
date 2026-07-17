@@ -8,16 +8,16 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const location = useLocation();
-  
+
   // Navbar width transforms from 100% to 95% on scroll
-  const navWidth = useTransform(scrollY, [0, 100], ["100%", "95%"]);
+  const navWidth = useTransform(scrollY, [0, 100], ["97%", "95%"]);
   const navPadding = useTransform(scrollY, [0, 100], ["1.5rem 2rem", "1rem 2rem"]);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -38,13 +38,13 @@ const Navbar = () => {
   return (
     <motion.nav
       style={{ width: navWidth, padding: navPadding }}
-      className={`fixed top-0 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${
-        isScrolled ? "glass shadow-medium mt-4 rounded-2xl" : "bg-transparent mt-0 rounded-none"
-      }`}
+      className="fixed top-0 left-1/2 -translate-x-1/2 z-50  transition-all duration-500 shadow-medium mt-5 text-[#0C647F] rounded-3xl  bg-white"
+
+
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between ">
         {/* Logo */}
-        <Link to="/landing" className="flex items-center gap-3 transition-colors" style={{ color: isScrolled ? "#0C647F" : "#ffffff" }}>
+        <Link to="/landing" className="flex items-center gap-3 transition-colors text-[#0C647F] ">
           <span className="text-2xl font-serif font-bold">
             Brother Suresh Babu
           </span>
@@ -63,9 +63,9 @@ const Navbar = () => {
           {navItems.map((item) => {
             const isExternal = item.href.startsWith("/#");
             const isActive = location.pathname === item.href ||
-                           (item.href === "/landing" && location.pathname === "/landing");
-            const linkColor = isScrolled ? "#0C647F" : "#ffffff";
-            const underlineColor = isScrolled ? "#0C647F" : "#ffffff";
+              (item.href === "/landing" && location.pathname === "/landing");
+            const linkColor = isScrolled ? "#0C647F" : "#0C647F";
+            const underlineColor = isScrolled ? "#0C647F" : "#0C647F";
 
             if (isExternal) {
               return (
@@ -91,7 +91,7 @@ const Navbar = () => {
                 {item.label}
                 <span
                   className="absolute bottom-0 left-0 h-0.5 transition-all duration-300"
-                  style={{ background: underlineColor, width: isActive ? "100%" : "0%"  }}
+                  style={{ background: underlineColor, width: isActive ? "100%" : "0%" }}
                 />
               </Link>
             );
@@ -102,7 +102,7 @@ const Navbar = () => {
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden p-2 transition-colors"
-          style={{ color: isScrolled ? "#0C647F" : "#ffffff" }}
+          style={{ color: isScrolled ? "#0C647F" : "#0C647F" }}
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -119,7 +119,7 @@ const Navbar = () => {
         >
           {navItems.map((item) => {
             const isExternal = item.href.startsWith("/#");
-            
+
             if (isExternal) {
               return (
                 <a
@@ -132,7 +132,7 @@ const Navbar = () => {
                 </a>
               );
             }
-            
+
             return (
               <Link
                 key={item.label}
